@@ -41,7 +41,7 @@ const Character = (props) => {
     <Card>
       <Description>
         <h5>{props.info.name}</h5>
-        <p>{props.info.biography}</p>
+        <p>{props.info.bio}</p>
       </Description>
       <Stats>
         <p>

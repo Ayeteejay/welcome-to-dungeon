@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { StaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import Dashboard from "../components/dashboard";
 import QuestData from "../adventures/warriorQuest";
@@ -16,17 +17,55 @@ const Section = styled.div`
   }
 `;
 
+// const Warrior = () => {
+//   const [questData, setQuestData] = useState(QuestData);
+//   const [characterData, setCharacterData] = useState(CharacterData);
+//   return (
+//     <Layout>
+//       <Container>
+//         <Section>
+//           <Dashboard character={characterData[0]} quest={questData}></Dashboard>
+//         </Section>
+//       </Container>
+//     </Layout>
+//   );
+// };
+
 const Warrior = () => {
-  const [questData, setQuestData] = useState(QuestData);
-  const [characterData, setCharacterData] = useState(CharacterData);
   return (
-    <Layout>
-      <Container>
-        <Section>
-          <Dashboard character={characterData[0]} quest={questData}></Dashboard>
-        </Section>
-      </Container>
-    </Layout>
+    <StaticQuery
+      query={graphql`
+        query warriorQuery {
+          allGameDataJson {
+            edges {
+              node {
+                characters {
+                  attackPower
+                  bio
+                  hitPoints
+                  id
+                  magicPoints
+                  magicPower
+                  name
+                  path
+                }
+              }
+            }
+          }
+        }
+      `}
+      render={(data) => (
+        <Layout>
+          <Container>
+            <Section>
+              <Dashboard
+                character={data.allGameDataJson.edges[0].node.characters[0]}
+              ></Dashboard>
+            </Section>
+          </Container>
+        </Layout>
+      )}
+    />
   );
 };
 export default Warrior;

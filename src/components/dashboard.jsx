@@ -120,7 +120,7 @@ const Dashboard = (props) => {
       <AdventureScreen>
         <div className="question-description">
           <p>Welcome {props.character.name}.</p>
-          <p>{props.quest[0].description}</p>
+          {/* <p>{props.quest[0].description}</p> */}
         </div>
         <div className="player-input">
           {/* <input placeholder="What would you like to do?"></input>
