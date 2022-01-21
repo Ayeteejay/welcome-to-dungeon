@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { StaticQuery, graphql } from "gatsby";
+import { useStaticQuery, StaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import Hero from "../components/hero";
@@ -24,47 +24,45 @@ const Content = styled.div`
 `;
 
 const PlayNow = () => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query characterQuery {
-          allGameDataJson {
-            edges {
-              node {
-                characters {
-                  attackPower
-                  bio
-                  hitPoints
-                  id
-                  magicPoints
-                  magicPower
-                  name
-                  path
-                }
+  const data = useStaticQuery(
+    graphql`
+      query {
+        allGameDataJson {
+          edges {
+            node {
+              characters {
+                attackPower
+                bio
+                hitPoints
+                id
+                magicPoints
+                magicPower
+                name
+                path
               }
             }
           }
         }
-      `}
-      render={(data) => (
-        <Layout>
-          <Hero pageTitle="Select your character"></Hero>
-          <Container>
-            <Content>
-              {data.allGameDataJson.edges[0].node.characters.map((value) => {
-                return (
-                  <Character
-                    key={value.id}
-                    info={value}
-                    // onClick={() => selectCharacter(value.name)}
-                  ></Character>
-                );
-              })}
-            </Content>
-          </Container>
-        </Layout>
-      )}
-    />
+      }
+    `
+  );
+  return (
+    <Layout>
+      <Hero pageTitle="Select your character"></Hero>
+      <Container>
+        <Content>
+          {data.allGameDataJson.edges[0].node.characters.map((value) => {
+            return (
+              <Character
+                key={value.id}
+                info={value}
+                // onClick={() => selectCharacter(value.name)}
+              ></Character>
+            );
+          })}
+        </Content>
+      </Container>
+    </Layout>
   );
 };
 

@@ -4,7 +4,7 @@
       {
         "id": 1,
         "name": "Warrior",
-        "bio": "Standard tank character with high defense and attack power. Barge head first into battle.",
+        "bio": "Standard tank character with high defense and attack power.",
         "hitPoints": 30,
         "magicPoints": 3,
         "attackPower": 10,
@@ -24,7 +24,7 @@
       {
         "id": 3,
         "name": "Rogue",
-        "bio": "Balanced character. Able to use all weapons including bows, staffs and swords.",
+        "bio": "Balanced character equally adept at using magic as they are at physical attacks.",
         "hitPoints": 20,
         "magicPoints": 10,
         "attackPower": 5,
@@ -37,15 +37,39 @@
     "adventures": [
       {
         "id": "warrior",
-        "game": []
+        "game": [
+          {
+            "room": 1,
+            "description": "You open the doorway of the castle and walk towards the open lobby. In front of you is a staircase that descends below you. To your left is a large ornate door. To your right is a large statue in the shape of a human figure.",
+            "items:": [],
+            "monsters": [],
+            "playerOptions": ["Up", "Down", "Left", "Right"]
+          }
+        ]
       },
       {
         "id": "sorcer",
-        "game": []
+        "game": [
+          {
+            "room": 1,
+            "description": "You open the doorway of the castle and walk towards the open lobby. In front of you is a staircase that descends below you. To your left is a large ornate door. To your right is a large statue in the shape of a human figure.",
+            "items:": [],
+            "monsters": [],
+            "playerOptions": ["Up", "Down", "Left", "Right"]
+          }
+        ]
       },
       {
         "id": "rogue",
-        "game": []
+        "game": [
+          {
+            "room": 1,
+            "description": "You open the doorway of the castle and walk towards the open lobby. In front of you is a staircase that descends below you. To your left is a large ornate door. To your right is a large statue in the shape of a human figure.",
+            "items:": [],
+            "monsters": [],
+            "playerOptions": ["Up", "Down", "Left", "Right"]
+          }
+        ]
       }
     ]
   }

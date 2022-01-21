@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import Dashboard from "../components/dashboard";
 import QuestData from "../adventures/warriorQuest";
@@ -31,41 +31,88 @@ const Section = styled.div`
 //   );
 // };
 
+// const Warrior = () => {
+//   return (
+//     <StaticQuery
+//       query={graphql`
+//         query warriorQuery {
+//           allGameDataJson {
+//             edges {
+//               node {
+//                 characters {
+//                   attackPower
+//                   bio
+//                   hitPoints
+//                   id
+//                   magicPoints
+//                   magicPower
+//                   name
+//                   path
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       `}
+//       render={(data) => (
+//         <Layout>
+//           <Container>
+//             <Section>
+//               <Dashboard
+//                 character={data.allGameDataJson.edges[0].node.characters[0]}
+//               ></Dashboard>
+//             </Section>
+//           </Container>
+//         </Layout>
+//       )}
+//     />
+//   );
+// };
+
 const Warrior = () => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query warriorQuery {
-          allGameDataJson {
-            edges {
-              node {
-                characters {
-                  attackPower
-                  bio
-                  hitPoints
-                  id
-                  magicPoints
-                  magicPower
-                  name
-                  path
+  const data = useStaticQuery(
+    graphql`
+      query {
+        allGameDataJson {
+          edges {
+            node {
+              adventures {
+                game {
+                  description
+                  playerOptions
+                  room
                 }
+                id
+              }
+              characters {
+                attackPower
+                bio
+                hitPoints
+                id
+                magicPoints
+                magicPower
+                name
+                path
               }
             }
           }
         }
-      `}
-      render={(data) => (
-        <Layout>
-          <Container>
-            <Section>
-              <Dashboard
-                character={data.allGameDataJson.edges[0].node.characters[0]}
-              ></Dashboard>
-            </Section>
-          </Container>
-        </Layout>
-      )}
-    />
+      }
+    `
+  );
+  console.log(data.allGameDataJson.edges[0].node);
+  return (
+    <Layout>
+      <Container>
+        <Section>
+          <Dashboard
+            character={data.allGameDataJson.edges[0].node.characters[0]}
+            quest={data.allGameDataJson.edges[0].node.adventures}
+          ></Dashboard>
+        </Section>
+      </Container>
+    </Layout>
   );
 };
+
 export default Warrior;
