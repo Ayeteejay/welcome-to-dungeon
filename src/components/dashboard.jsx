@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Screen = styled.div`
   border: 1px solid ${(props) => props.theme.colors.secondary};
@@ -66,13 +67,27 @@ const AdventureScreen = styled.div`
 `;
 
 const Dashboard = (props) => {
-  const [playerInventory, setPlayerInventory] = useState([
-    {
-      itemId: 1,
-      name: "Potion",
-      quantity: 1,
-    },
-  ]);
+  const data = useStaticQuery(
+    graphql`
+      query {
+        allAdventureDataJson {
+          edges {
+            node {
+              adventures {
+                game {
+                  description
+                  playerOptions
+                  room
+                }
+                id
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+  const [playerInventory, setPlayerInventory] = useState([]);
   const [playerStats, setPlayerStats] = useState({
     level: 1,
     hitPoints: props.character.hitPoints,
@@ -120,16 +135,14 @@ const Dashboard = (props) => {
       <AdventureScreen>
         <div className="question-description">
           <p>Welcome {props.character.name}.</p>
-
-          {/* Fix this below */}
-          {/* <p>{props.quest}</p> */}
+          <p>
+            {
+              data.allAdventureDataJson.edges[0].node.adventures[props.quest]
+                .game[0].description
+            }
+          </p>
         </div>
         <div className="player-input">
-          {/* <input placeholder="What would you like to do?"></input>
-          <p className="instructions">
-            Stuck? Some valid actions are "Move Left", "Attack", "Look."
-          </p>
-          <button className="primary-cta">Submit</button> */}
           <button className="primary-cta">&#8592;</button>
           <button className="primary-cta">&#8593;</button>
           <button className="primary-cta">&#8594;</button>

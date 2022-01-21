@@ -44,6 +44,7 @@ const Warrior = () => {
         <Section>
           <Dashboard
             character={data.allCharacterDataJson.edges[0].node.characters[0]}
+            quest={0}
           ></Dashboard>
         </Section>
       </Container>
