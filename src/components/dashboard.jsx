@@ -120,6 +120,8 @@ const Dashboard = (props) => {
       <AdventureScreen>
         <div className="question-description">
           <p>Welcome {props.character.name}.</p>
+
+          {/* Fix this below */}
           {/* <p>{props.quest[0].description}</p> */}
         </div>
         <div className="player-input">
