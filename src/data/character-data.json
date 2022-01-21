@@ -1,0 +1,36 @@
+[
+  {
+    "characters": [
+      {
+        "id": 1,
+        "name": "Warrior",
+        "bio": "Standard tank character with high defense and attack power.",
+        "hitPoints": 30,
+        "magicPoints": 3,
+        "attackPower": 10,
+        "magicPower": 1,
+        "path": "/warrior"
+      },
+      {
+        "id": 2,
+        "name": "Sorcerer",
+        "bio": "Trades lower attack power for greater list of spells.",
+        "hitPoints": 15,
+        "magicPoints": 30,
+        "attackPower": 1,
+        "magicPower": 10,
+        "path": "/sorcerer"
+      },
+      {
+        "id": 3,
+        "name": "Rogue",
+        "bio": "Balanced character equally adept at using magic as they are at physical attacks.",
+        "hitPoints": 20,
+        "magicPoints": 10,
+        "attackPower": 5,
+        "magicPower": 4,
+        "path": "/rogue"
+      }
+    ]
+  }
+]

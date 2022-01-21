@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useStaticQuery, StaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import Hero from "../components/hero";
@@ -27,7 +27,7 @@ const PlayNow = () => {
   const data = useStaticQuery(
     graphql`
       query {
-        allGameDataJson {
+        allCharacterDataJson {
           edges {
             node {
               characters {
@@ -51,7 +51,7 @@ const PlayNow = () => {
       <Hero pageTitle="Select your character"></Hero>
       <Container>
         <Content>
-          {data.allGameDataJson.edges[0].node.characters.map((value) => {
+          {data.allCharacterDataJson.edges[0].node.characters.map((value) => {
             return (
               <Character
                 key={value.id}

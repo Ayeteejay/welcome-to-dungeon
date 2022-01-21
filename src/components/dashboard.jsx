@@ -122,7 +122,7 @@ const Dashboard = (props) => {
           <p>Welcome {props.character.name}.</p>
 
           {/* Fix this below */}
-          <p>{props.quest}</p>
+          {/* <p>{props.quest}</p> */}
         </div>
         <div className="player-input">
           {/* <input placeholder="What would you like to do?"></input>
